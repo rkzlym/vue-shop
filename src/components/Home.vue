@@ -66,10 +66,9 @@ export default {
     },
     // 获取菜单
     async getMenus() {
-      const result = await this.$http.post("/menu/list");
-      if (result.status !== 200) return this.$message.error(result.statusText);
-      this.menus = result.data;
-      console.log(this.menus);
+      const {data: res} = await this.$http.get("/menu/list");
+      if (res.code !== 1) return this.$message.error(result.statusText);
+      this.menus = res.data;
     },
     // 点击按钮切换菜单的折叠与展开
     toggleCollapse() {
